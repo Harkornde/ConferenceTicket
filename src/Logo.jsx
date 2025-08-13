@@ -6,11 +6,11 @@ export default function Logo() {
         src="/images/pattern-squiggly-line-top.svg"
       />
       <img
-        className="absolute bottom-0 hidden lg:block w-[600px]"
+        className="fixed bottom-0 hidden lg:block w-[600px]"
         src="/images/pattern-squiggly-line-bottom-desktop.svg"
       />{" "}
       <img
-        className="absolute bottom-0 lg:hidden w-[330px]"
+        className="fixed bottom-0 lg:hidden w-[330px]"
         src="/images/pattern-squiggly-line-bottom-mobile-tablet.svg"
       />
       <div>

@@ -11,4 +11,9 @@ body {
 .bg-layered {
   background-image: url("images/pattern-lines.svg"),
     url("/images/background-desktop.png");
+
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, cover;
+  background-position: top left, center;
+  min-height: 100vh;
 }

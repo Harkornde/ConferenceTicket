@@ -1,10 +1,11 @@
 import Avatar from "./Avatar";
+import Details from "./Details";
 import Logo from "./Logo";
 
 function App() {
   return (
     <>
-      <div className="bg-layered bg-cover bg-center h-screen">
+      <div className="bg-layered bg-cover bg-center ">
         {/* Logo section */}
         <Logo />
 
@@ -21,6 +22,7 @@ function App() {
 
         {/* Avatar menu(for uploading pictures) */}
         <Avatar />
+        <Details />
       </div>
     </>
   );
