@@ -5,10 +5,26 @@ export default function Details() {
     <>
       <div className="md:w-[40em] m-auto">
         <form action="">
-          <InputForm detail="Full Name"/>
-          <InputForm detail="Email Address"/>
-          <InputForm detail="GitHub Username"/>
-          <button className="block bg-[hsl(7,86%,67%)] mx-7 mt-6 text-xl h-12 border rounded-xl px-2 w-6/7 md:w-10/12">
+          {/* Form input */}
+          <InputForm detail="Full Name" placeholder="Full Name" type="text" />
+          <InputForm
+            detail="Email Address"
+            placeholder="example@gmail.com"
+            type="email"
+          />
+          <InputForm
+            detail="GitHub Username"
+            placeholder="@yourusername"
+            type="text"
+          />
+
+          {/* tick */}
+          <button
+            onClick={(e) => {
+              e.preventDefault;
+            }}
+            className="cursor-pointer block bg-[hsl(7,86%,67%)] mx-7 mt-6 border text-xl h-12 rounded-xl px-2 w-6/7 md:w-10/12"
+          >
             Generate My Ticket
           </button>
         </form>

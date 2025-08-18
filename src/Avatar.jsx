@@ -1,27 +1,61 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 export default function Avatar() {
-  // const [files, setfiles] = useState();
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState("No selected file name");
+  // const[error,setEror] = useState()
+
+  function checkUpload({ target: { files } }) {
+    const imageDetails = files[0];
+    imageDetails && setFileName(imageDetails.name);
+    if (imageDetails) {
+      setImage(URL.createObjectURL(imageDetails));
+    }
+
+    // Checking for size error
+    if (imageDetails.size > 500 * 1024) {
+      // setError("File is too large! Please upload an image under 500 KB.");
+      setImage(null);
+      setFileName("No selected file name");
+      return;
+    }
+
+    console.log(URL.createObjectURL(imageDetails));
+    console.log(files[0].name);
+  }
 
   return (
     <>
       <div className="md:w-[40em] m-auto">
         <form>
-          <label htmlFor="avatar-upload" className="text-xl mx-7 font-medium block">
+          <div
+            htmlFor="avatar-upload"
+            className="text-xl mx-7 font-medium block"
+          >
             Upload Avatar
-          </label>
+          </div>
 
           <label
             htmlFor="avatar-upload"
             className="cursor-pointer block border p-4 mt-[10px] text-center border-dashed rounded-xl text-lg w-5/6 mx-7"
           >
-            <img
-              src="/images/icon-upload.svg"
-              className="m-auto mb-2 w-[40px] p-[5px] border rounded-md border-[hsl(252, 6%, 83%)]"
-            />
-            Drag and drop or click to upload
+            {image ? (
+              <img src={image} alt={fileName} />
+            ) : (
+              <img
+                src="/images/icon-upload.svg"
+                className="m-auto mb-2 w-[40px] p-[5px] border rounded-md border-[hsl(252, 6%, 83%)]"
+              />
+            )}
+            <span>{image ? "" : "Drag and drop or click to upload"}</span>
           </label>
-          <input type="file" id="avatar-upload" className="hidden" />
+          <input
+            type="file"
+            id="avatar-upload"
+            className="hidden"
+            accept="image/*"
+            onChange={(e) => checkUpload(e)}
+          />
         </form>
       </div>
 
