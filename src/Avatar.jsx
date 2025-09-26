@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-export default function Avatar() {
-  const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState("No selected file name");
-  // const[error,setEror] = useState()
+export default function Avatar({ image, setImage, fileName, setFileName }) {
+  const [error, setError] = useState();
 
   function checkUpload({ target: { files } }) {
     const imageDetails = files[0];
     imageDetails && setFileName(imageDetails.name);
+
     if (imageDetails) {
       setImage(URL.createObjectURL(imageDetails));
+      setError();
     }
 
     // Checking for size error
     if (imageDetails.size > 500 * 1024) {
-      // setError("File is too large! Please upload an image under 500 KB.");
+      setError("File too large! Please upload an image under 500 KB.");
       setImage(null);
       setFileName("No selected file name");
       return;
@@ -61,9 +61,13 @@ export default function Avatar() {
 
       <div className="items-end md:w-[40em] m-auto">
         <img src="/images/icon-info.svg" className="inline-block mr-1 mx-7" />
-        <p className=" mt-2 md:text-sm text-xs inline-block">
-          Upload your photo (JPG or PNG, max size: 500kb )
-        </p>
+        {error ? (
+          <p className=" mt-2 md:text-sm text-xs inline-block">{error}</p>
+        ) : (
+          <p className=" mt-2 md:text-sm text-xs inline-block">
+            Upload your photo (JPG or PNG, max size: 500kb )
+          </p>
+        )}
       </div>
     </>
   );

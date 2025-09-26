@@ -1,11 +1,25 @@
+import { useState } from "react";
 import Avatar from "./Avatar";
 import Details from "./Details";
 import Logo from "./Logo";
 
 function App() {
+  //Getting
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState(() => "No selected file name");
+
+  //Getting the details from detail/js
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [github, setGithub] = useState("");
+
+  console.log(fullName, email, github, image, fileName);
+
+  console.log(fileName);
+
   return (
     <>
-      <div className="bg-layered bg-cover bg-center ">
+      <div className="bg-layered bg-cover bg-center">
         {/* Logo section */}
         <Logo />
 
@@ -21,12 +35,24 @@ function App() {
         </p>
 
         {/* Avatar menu(for uploading pictures) */}
-        <Avatar />
-        <Details />
+        <Avatar
+          fileName={fileName}
+          image={image}
+          setFileName={setFileName}
+          setImage={setImage}
+        />
+
+        <Details
+          fullName={fullName}
+          setFullName={setFullName}
+          email={email}
+          setEmail={setEmail}
+          github={github}
+          setGithub={setGithub}
+        />
       </div>
     </>
   );
 }
 
 export default App;
-// style={{ display: "none" }}

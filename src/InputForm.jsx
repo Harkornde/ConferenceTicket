@@ -1,11 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function InputForm({ detail, placeholder, type }) {
-  const [inputValue, setInputValue] = useState("");
+export default function InputForm({
+  detail,
+  placeholder,
+  type,
+  setInputValue,
+  inputValue,
+}) {
+  // const [inputValue, setInputValue] = useState("");
 
   function getInputValue(e) {
     const val = e.target.value;
-    setInputValue(val);
+    setInputValue(() => {
+      return val;
+    });
     console.log(val);
   }
 
@@ -19,7 +27,7 @@ export default function InputForm({ detail, placeholder, type }) {
           type={type}
           value={inputValue}
           placeholder={placeholder}
-          className="border mt-1 h-12 text-xl rounded-xl px-2 w-6/6 md:w-11/12"
+          className="relative z-1 border mt-1 h-12 text-xl rounded-xl px-2 w-6/6 md:w-11/12"
         />
       </div>
     </>
