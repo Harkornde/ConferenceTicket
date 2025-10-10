@@ -37,17 +37,19 @@ export default function Avatar({ image, setImage, fileName, setFileName }) {
 
           <label
             htmlFor="avatar-upload"
-            className="cursor-pointer block border p-4 mt-[10px] text-center border-dashed rounded-xl text-lg w-5/6 mx-7"
+            className="cursor-pointer block border p-4 mt-[10px] text-center border-dashed rounded-xl text-lg w-6/7 md:w-5/6 mx-7"
           >
             {image ? (
               <img src={image} alt={fileName} />
             ) : (
               <img
                 src="/images/icon-upload.svg"
-                className="m-auto mb-2 w-[40px] p-[5px] border rounded-md border-[hsl(252, 6%, 83%)]"
+                className="m-auto mb-2 mt-[5px] p-[5px] border rounded-md border-[hsl(252, 6%, 83%)]"
               />
             )}
-            <span>{image ? "" : "Drag and drop or click to upload"}</span>
+            <span className="mt-[8px] inline-block">
+              {image ? "" : "Drag and drop or click to upload"}
+            </span>
           </label>
           <input
             type="file"

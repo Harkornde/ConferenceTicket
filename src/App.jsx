@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-layered bg-cover bg-center">
+      <div className="bg-cover bg-center">
         {/* Logo section */}
         <Logo />
 

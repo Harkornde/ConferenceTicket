@@ -8,6 +8,11 @@ export default function Details({
   github,
   setGithub,
 }) {
+  function getSubmitedData(e) {
+    e.preventDefault();
+    console.log(fullName, email, github);
+  }
+
   return (
     <>
       <div className="md:w-[40em] m-auto">
@@ -37,11 +42,8 @@ export default function Details({
 
           {/* ticket button */}
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              console.log("Clicked");
-            }}
-            className="relative z-1 cursor-pointer block bg-[hsl(7,86%,67%)] mx-7 mt-6 border text-xl h-12 rounded-xl px-2 w-6/7 md:w-10/12"
+            onClick={getSubmitedData}
+            className="relative z-1 cursor-pointer block bg-[hsl(7,86%,67%)] mx-7 my-6 border text-xl h-12 rounded-xl px-2 w-6/7 md:w-10/12"
           >
             Generate My Ticket
           </button>
