@@ -16,7 +16,7 @@ export default function Avatar({ image, setImage, fileName, setFileName }) {
     if (imageDetails.size > 500 * 1024) {
       setError("File too large! Please upload an image under 500 KB.");
       setImage(null);
-      setFileName("No selected file name");
+      setFileName("No selected file ");
       return;
     }
 
@@ -37,10 +37,14 @@ export default function Avatar({ image, setImage, fileName, setFileName }) {
 
           <label
             htmlFor="avatar-upload"
-            className="cursor-pointer block border p-4 mt-[10px] text-center border-dashed rounded-xl text-lg w-6/7 md:w-5/6 mx-7"
+            className={
+              image
+                ? "cursor-pointer block border p-4 mt-[10px] border-dashed rounded-xl h-[140px] w-6/7 md:w-5/6 mx-7"
+                : "cursor-pointer block border p-4 mt-[10px] text-center border-dashed rounded-xl text-lg w-6/7 md:w-5/6 mx-7"
+            }
           >
             {image ? (
-              <img src={image} alt={fileName} />
+              <img className="w-[100px] m-auto" src={image} alt={fileName} />
             ) : (
               <img
                 src="/images/icon-upload.svg"
@@ -62,12 +66,18 @@ export default function Avatar({ image, setImage, fileName, setFileName }) {
       </div>
 
       <div className="items-end md:w-[40em] m-auto">
-        <img src="/images/icon-info.svg" className="inline-block mr-1 mx-7" />
+        {image ? (
+          ""
+        ) : (
+          <img src="/images/icon-info.svg" className="inline-block mr-1 mx-7" />
+        )}
         {error ? (
-          <p className=" mt-2 md:text-sm text-xs inline-block">{error}</p>
+          <p className=" mt-2 md:text-sm text-xs inline-block text-red-400">
+            {error}
+          </p>
         ) : (
           <p className=" mt-2 md:text-sm text-xs inline-block">
-            Upload your photo (JPG or PNG, max size: 500kb )
+            {image ? "" : "Upload your photo (JPG or PNG, max size: 500kb )"}
           </p>
         )}
       </div>

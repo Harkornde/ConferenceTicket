@@ -2,20 +2,65 @@ import { useState } from "react";
 import Avatar from "./Avatar";
 import Details from "./Details";
 import Logo from "./Logo";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   //Getting
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState(() => "No selected file name");
+  const [fileName, setFileName] = useState(() => "No selected file");
 
   //Getting the details from detail/js
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [github, setGithub] = useState("");
 
-  console.log(fullName, email, github, image, fileName);
+  //Implementing the error
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [githubError, setGithubError] = useState("");
 
-  console.log(fileName);
+  const navigate = useNavigate();
+
+  function getSubmitedData(e) {
+    e.preventDefault();
+
+    setNameError("");
+    setEmailError("");
+    setGithubError("");
+
+    let isValid = true;
+
+    if (fullName.trim() === "") {
+      setNameError("Name cannot be empty");
+      isValid = false;
+    }
+
+    if (email.trim() === "") {
+      setEmailError("Email Address cannot be empty");
+      isValid = false;
+    } else if (!email.toLowerCase().endsWith("@gmail.com")) {
+      setEmailError("Invalid email address (must be a @gmail.com address)");
+      isValid = false;
+    }
+
+    if (github.trim() === "") {
+      setGithubError("Username cannot be empty");
+      isValid = false;
+    }
+
+    if (isValid) {
+      navigate("/Ticket", {
+        state: {
+          fullName: fullName,
+          email: email,
+          github: github,
+          image: image,
+        },
+      });
+    } else {
+      alert("Form is invalid. Please check errors.");
+    }
+  }
 
   return (
     <>
@@ -42,6 +87,7 @@ function App() {
           setImage={setImage}
         />
 
+        {/* Getting users details */}
         <Details
           fullName={fullName}
           setFullName={setFullName}
@@ -49,6 +95,10 @@ function App() {
           setEmail={setEmail}
           github={github}
           setGithub={setGithub}
+          getSubmitedData={getSubmitedData}
+          nameError={nameError}
+          emailError={emailError}
+          githubError={githubError}
         />
       </div>
     </>
@@ -56,3 +106,6 @@ function App() {
 }
 
 export default App;
+
+//emailError, getEmailError
+//blankError, getBlankError

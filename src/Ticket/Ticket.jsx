@@ -1,8 +1,13 @@
 import React from "react";
 import Logo from "../Logo";
 import Ticketcard from "./Ticketcard";
+import { useLocation } from "react-router-dom";
 
 const Ticket = () => {
+  const { state } = useLocation() || {};
+
+  const { fullName, email, github, image } = state || {};
+
   return (
     <>
       <div className="bg-layered bg-cover bg-center">
@@ -12,7 +17,7 @@ const Ticket = () => {
           <b>
             Congrats,
             <span className="bg-linear-to-r from-[hsl(7,86%,67%)] from-30% to-[hsl(252,6%,83%)] text-transparent bg-clip-text">
-              Jonatan Kristof!
+              {fullName || "Jonatan Kristof!"}
             </span>
             <br className="hidden md:block" /> Your ticket is ready.
           </b>
@@ -21,11 +26,12 @@ const Ticket = () => {
         <p className="text-center px-5 my-7 md:text-2xl text-xl font-normal lg:tracking-wider">
           We've emailed your ticket to <br className="hidden md:block" />
           <span className="bg-linear-to-r from-[hsl(7,86%,67%)] from-30% to-[hsl(252,6%,83%)] text-transparent bg-clip-text">
-            Jonatan@gmail.com
+            {email || "Jonatan@gmail.com"}
           </span>{" "}
-          and will send updates in<br className="hidden md:block"/> the run up to the event.
+          and will send updates in
+          <br className="hidden md:block" /> the run up to the event.
         </p>
-        <Ticketcard />
+        <Ticketcard github={github} image={image} fullName={fullName} />
       </div>
     </>
   );

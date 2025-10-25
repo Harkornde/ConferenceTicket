@@ -7,23 +7,23 @@ export default function Details({
   setEmail,
   github,
   setGithub,
+  getSubmitedData,
+  nameError,
+  emailError,
+  githubError,
 }) {
-  function getSubmitedData(e) {
-    e.preventDefault();
-    console.log(fullName, email, github);
-  }
-
   return (
     <>
       <div className="md:w-[40em] m-auto">
         <form action="">
           {/* Form input */}
           <InputForm
-            detail="Full Name"
+            detail="Name"
             placeholder="Full Name"
             type="text"
             setInputValue={setFullName}
             inputValue={fullName}
+            error={nameError}
           />
           <InputForm
             detail="Email Address"
@@ -31,13 +31,15 @@ export default function Details({
             type="email"
             setInputValue={setEmail}
             inputValue={email}
+            error={emailError}
           />
           <InputForm
-            detail="GitHub Username"
+            detail="Username"
             placeholder="@yourusername"
             type="text"
             setInputValue={setGithub}
             inputValue={github}
+            error={githubError}
           />
 
           {/* ticket button */}

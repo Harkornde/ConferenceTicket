@@ -1,7 +1,6 @@
-import React from "react";
-import Logo from "../Logo";
+// import React from "react";
 
-const Ticketcard = () => {
+const Ticketcard = ({ github, image, fullName }) => {
   return (
     <>
       <div className="px-3 mt-18 md:mt-24">
@@ -16,17 +15,19 @@ const Ticketcard = () => {
 
           <div className="mt-8 flex items-center md:mx-6 md:mt-18">
             <img
-              src="images/image-avatar.jpg"
+              src={image || "images/image-avatar.jpg"}
               className="w-[50px] h-[50px] md:w-[75px] md:h-[75px] rounded-lg"
             />
             <div className="mx-2">
-              <h1 className="text-2xl font-bold">Jonatan Kristof</h1>
+              <h1 className="text-2xl font-bold">
+                {fullName || "Jonatan Kristof"}
+              </h1>
               <p className="text-lg">
                 <img
                   className="inline w-4 mb-[3px] md:w-5"
                   src="images/icon-github.svg"
                 />{" "}
-                @jonatankristof0101
+                {github || "@jonatankristof0101"}
               </p>
             </div>
           </div>
